@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+<h1 class="colortext"> Книги </h1>
+<ul>
+    <header>
+    <nav class="navbar">
+    <img src="/static/img/Капитанская дочка.jpg" width='350' height='500'
+         alt="здесь должна была быть картинка, но не нашлась">
+    <h3> Капитанская дочка </h3>
+    <a class="btn btn-primary " href="/book_1">Читать</a>
+    </nav>
+    <nav class="navbar">
+    <img src="/static/img/Путешествия Гулливера.jpg" width='350' height='500'
+         alt="здесь должна была быть картинка, но не нашлась">
+    <h3> Путешествия Гулливера </h3>
+    <a class="btn btn-primary " href="/book_2">Читать</a>
+    </nav>
+    <nav class="navbar">
+    <img src="/static/img/Два капитана.jpg" width='350' height='500'
+         alt="здесь должна была быть картинка, но не нашлась">
+    <h3> Два капитана </h3>
+    <a class="btn btn-primary" href="/book_3">Читать</a>
+    </nav>
+        <a href="/reviews" class="btn btn-secondary">Отзывы о книгах</a>
+    </header>
+</ul>
+{% endblock %}
