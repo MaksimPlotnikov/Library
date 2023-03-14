@@ -12,8 +12,7 @@ class User(SqlAlchemyBase, UserMixin):
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, autoincrement=True)
-    surname = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    name = sqlalchemy.Column(sqlalchemy.String)
     email = sqlalchemy.Column(sqlalchemy.String,
                               index=True, unique=True, nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
@@ -22,7 +21,7 @@ class User(SqlAlchemyBase, UserMixin):
     reviews = orm.relation("Reviews", back_populates='user')
 
     def __repr__(self):
-        return f'<Colonist> {self.id} {self.surname} {self.name}'
+        return f'<Student> {self.id} {self.surname} {self.name}'
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)

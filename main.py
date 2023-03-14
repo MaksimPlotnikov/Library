@@ -1,13 +1,14 @@
 from flask import Flask, render_template, redirect
+from werkzeug.exceptions import abort
 from data import db_session
 from data.users import User
-from flask_login import LoginManager, login_user, login_required, logout_user
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from forms.user import RegisterForm, LoginForm, BookForm
 from forms.review import ReviewForm
 from data.reviews import Reviews
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+app.config['SECRET_KEY'] = 'secret_key'
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -40,23 +41,60 @@ def book_2():
     return render_template('book_2.html', form=form)
 
 
+@app.route('/book_2_2', methods=['GET', 'POST'])
+def book_2_2():
+    form = BookForm()
+    if form.validate_on_submit():
+        return redirect("/")
+    return render_template('book_2_2.html', form=form)
+
+
+@app.route('/book_2_3', methods=['GET', 'POST'])
+def book_2_3():
+    form = BookForm()
+    if form.validate_on_submit():
+        return redirect("/")
+    return render_template('book_2_3.html', form=form)
+
+
+@app.route('/book_2_4', methods=['GET', 'POST'])
+def book_2_4():
+    form = BookForm()
+    if form.validate_on_submit():
+        return redirect("/")
+    return render_template('book_2_4.html', form=form)
+
+
+@app.route('/book_2_5', methods=['GET', 'POST'])
+def book_2_5():
+    form = BookForm()
+    if form.validate_on_submit():
+        return redirect("/")
+    return render_template('book_2_5.html', form=form)
+
+
+@app.route('/book_2_6', methods=['GET', 'POST'])
+def book_2_6():
+    form = BookForm()
+    if form.validate_on_submit():
+        return redirect("/")
+    return render_template('book_2_6.html', form=form)
+
+
+@app.route('/book_2_7', methods=['GET', 'POST'])
+def book_2_7():
+    form = BookForm()
+    if form.validate_on_submit():
+        return redirect("/")
+    return render_template('book_2_7.html', form=form)
+
+
 @app.route('/book_3', methods=['GET', 'POST'])
 def book_3():
     form = BookForm()
     if form.validate_on_submit():
         return redirect("/")
     return render_template('book_3.html', form=form)
-
-
-def create_users():
-    capitane = User()
-    capitane.surname = 'Scott'
-    capitane.name = 'Ridley'
-    capitane.email = 'scott_chief@mars.org'
-
-    db_sess = db_session.create_session()
-    db_sess.add(capitane)
-    db_sess.commit()
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -72,11 +110,7 @@ def reqister():
             return render_template('register.html', title='Регистрация',
                                    form=form,
                                    message="Такой пользователь уже есть")
-        user = User(
-            name=form.name.data,
-            email=form.email.data,
-            surname=form.surname.data
-        )
+        user = User(name=form.name.data, email=form.email.data)
         user.set_password(form.password.data)
         db_sess.add(user)
         db_sess.commit()
